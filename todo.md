@@ -5,7 +5,7 @@ Angular + SCSS. Hover- und Animationsdetails im Figma-Prototyp-Modus checken.
 ## 1. Setup
 
 - [x] `ng new portfolio --style=scss --skip-tests`
-- [ ] Components: header, hero, about, skills, projects, project-dialog, testimonials, contact, footer, legal-notice, privacy-policy
+- [x] Components: header, hero, about, skills, projects, project-dialog, testimonials, contact, footer, legal-notice
 - [ ] Farben, Schriftgrößen und Abstände aus Figma übernehmen, in `_variables.scss` ablegen
 - [ ] Fonts lokal einbinden, nicht über das Google Fonts CDN (DSGVO)
 - [ ] Icons als SVG exportieren, dazu Projektbilder und Foto
