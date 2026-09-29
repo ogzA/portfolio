@@ -1,13 +1,20 @@
 @use 'abstracts' as *;
 
 header {
+  position: fixed;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  max-width: 1440px;
-  margin: 0 auto;
-  padding: 1.5rem 3.5rem;
   color: white;
+  height: rem(100);
+  /*   background: linear-gradient(180deg, rgba(0, 0, 0, 0.918) 18%, rgba(0, 0, 0, 0) 100%);
+ */
+  width: 100%;
+
+  .content-wrapper {
+    display: flex;
+    justify-content: space-between;
+  }
 
   .header-left {
     display: flex;
