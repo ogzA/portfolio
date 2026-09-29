@@ -1,3 +1,5 @@
+@use 'abstracts' as *;
+
 header {
   display: flex;
   align-items: center;
@@ -7,10 +9,17 @@ header {
   padding: 1.5rem 3.5rem;
   color: white;
 
-  .lang-nav-container {
+  .header-left {
     display: flex;
     align-items: center;
-    gap: 1.5rem;
+    gap: rem(24);
+
+    .nav-list {
+      display: flex;
+      align-items: center;
+      gap: rem(24);
+      font-size: rem(20);
+    }
   }
 
   a {
