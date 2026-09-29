@@ -4,7 +4,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: calc(100vh - #{rem(100)});
+  min-height: 100svh;
   background: linear-gradient(55.22deg, #1c1c1c 36.26%, #08463b 93.28%);
 
   .content-wrapper {
