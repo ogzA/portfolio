@@ -1,3 +1,35 @@
-section {
-  background-color: rgb(62, 249, 0);
+@use 'abstracts' as *;
+
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - #{rem(100)});
+  background: linear-gradient(55.22deg, #1c1c1c 36.26%, #08463b 93.28%);
+
+  .content-wrapper {
+    max-width: rem(1440);
+  }
+}
+
+.hero-content {
+  text-align: center;
+}
+
+.hero-subtitle {
+  font-size: rem(32);
+  color: white;
+}
+
+.hero-title {
+  margin: rem(8) 0 rem(48);
+  font-size: rem(96);
+  font-weight: 700;
+  color: white;
+}
+
+.hero-actions {
+  display: flex;
+  justify-content: center;
+  gap: rem(32);
 }
