@@ -1,3 +1,76 @@
-section {
-  background-color: greenyellow;
+@use 'abstracts' as *;
+
+.about {
+  gap: rem(96);
+  margin: 0 auto;
+  padding: rem(120) rem(110);
+  background: $color-bg;
+  display: flex;
+  justify-content: center;
+
+  .content-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: rem(100);
+  }
+
+  .about-image {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    border-radius: rem(30);
+    filter: grayscale(1);
+  }
+
+  .about-label {
+    margin-bottom: rem(16);
+    font-family: $font-sans;
+    font-size: rem(20);
+    color: $color-primary;
+  }
+
+  .about-card {
+    padding: rem(32);
+    border: 1px solid $color-primary;
+    border-radius: rem(30);
+    background-color: rgba($color-primary, 0.08);
+
+    .about-title {
+      margin-bottom: rem(32);
+      font-family: $font-mono;
+      font-size: rem(64);
+      font-weight: 700;
+      color: $color-primary;
+    }
+
+    .about-text {
+      margin-bottom: rem(32);
+      font-family: $font-sans;
+      font-size: rem(16);
+      text-align: justify;
+      color: $color-white;
+    }
+
+    .about-list {
+      display: flex;
+      flex-direction: column;
+      gap: rem(16);
+
+      .about-item {
+        display: flex;
+        align-items: flex-start;
+        gap: rem(16);
+        font-family: $font-sans;
+        font-size: rem(16);
+        color: $color-text;
+
+        .about-icon {
+          flex-shrink: 0;
+          width: rem(24);
+          margin-top: rem(2);
+        }
+      }
+    }
+  }
 }

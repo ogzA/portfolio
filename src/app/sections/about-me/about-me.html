@@ -1,3 +1,28 @@
-<section id="about-me">
-  <h2>About me</h2>
+<section class="about" id="about-me">
+  <div class="content-wrapper">
+    <img class="about-image" src="assets/images/oguz.png" alt="Oğuz Akankan am Laptop" />
+
+    <div class="about-content">
+      <p class="about-label">Who I Am</p>
+
+      <div class="about-card">
+        <h2 class="about-title">About me</h2>
+
+        <p class="about-text">
+          Hey there, I'm Oğuz! Lorem, ipsum dolor sit amet consectetur adipisicing elit. Facilis ab
+          assumenda neque quas asperiores sit quibusdam quia aliquam magni ad. Assumenda totam modi
+          fugit saepe fuga, quam numquam doloremque consequuntur.
+        </p>
+
+        <ul class="about-list">
+          @for (point of points; track point.icon) {
+            <li class="about-item">
+              <img class="about-icon" [src]="point.icon" alt="" />
+              <p>{{ point.text }}</p>
+            </li>
+          }
+        </ul>
+      </div>
+    </div>
+  </div>
 </section>
