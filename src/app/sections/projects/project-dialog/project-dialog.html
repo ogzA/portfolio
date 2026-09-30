@@ -1,1 +1,42 @@
-<p>project-dialog works!</p>
+<dialog
+  #dialog
+  class="dialog"
+  aria-labelledby="dialog-title"
+  (close)="closed.emit()"
+  (click)="onBackdropClick($event)"
+>
+  <div class="dialog-content">
+    <button class="dialog-close" type="button" aria-label="Close" (click)="closed.emit()">
+      x
+      <!-- hier kommt X Close Bild rein -->
+    </button>
+
+    <div class="dialog-info">
+      <span class="dialog-number">{{ projectNumber() }}</span>
+      <h3 class="dialog-title" id="dialog-title">{{ project().name }}</h3>
+      <h4 class="dialog-subtitle">What is this project about?</h4>
+      <p class="dialog-text">{{ project().description }}</p>
+
+      <ul class="dialog-tech-list">
+        @for (tech of project().technologies; track tech.name) {
+          <li class="dialog-tech">
+            <img [src]="tech.icon" alt="" />
+            {{ tech.name }}
+          </li>
+        }
+      </ul>
+
+      <div class="dialog-actions">
+        <a class="btn" [href]="project().githubUrl" target="_blank" rel="noopener">GitHub ↗</a>
+        <a class="btn" [href]="project().liveUrl" target="_blank" rel="noopener">Live Test ↗</a>
+      </div>
+    </div>
+
+    <img class="dialog-image" [src]="project().image" [alt]="'Screenshot ' + project().name" />
+
+    <button class="dialog-next" type="button" (click)="next.emit()">
+      Next project
+      <img src="assets/images/icons/arrow-right.svg" alt="" />
+    </button>
+  </div>
+</dialog>

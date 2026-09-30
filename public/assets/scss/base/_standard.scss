@@ -3,6 +3,7 @@
 body,
 html {
   height: 100%;
+  font-family: 'Fira Code';
 }
 
 body {
@@ -15,4 +16,8 @@ body {
   max-width: rem(1440);
   margin: 0 auto;
   padding: 0 rem(16);
+}
+
+html:has(dialog[open]) {
+  overflow: hidden;
 }

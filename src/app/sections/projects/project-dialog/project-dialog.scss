@@ -1,0 +1,124 @@
+@use 'abstracts' as *;
+
+.dialog {
+  width: min(90vw, rem(1250));
+  max-height: 90vh;
+  margin: auto;
+  padding: 0;
+  border: 1px solid $color-primary;
+  border-radius: rem(30);
+  background: linear-gradient(135deg, transparent 30%, rgba($color-primary, 0.25)), $color-bg;
+  color: $color-white;
+
+  &::backdrop {
+    background-color: rgba(0, 0, 0, 0.7);
+  }
+}
+
+.dialog-content {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: rem(64);
+  padding: rem(80);
+}
+
+.dialog-close {
+  position: absolute;
+  top: rem(40);
+  right: rem(40);
+  transition: transform 200ms ease;
+
+  img {
+    width: rem(24);
+  }
+
+  &:hover {
+    transform: rotate(90deg);
+  }
+}
+
+.dialog-info {
+  flex: 1;
+
+  .dialog-number {
+    display: block;
+    font-family: $font-sans;
+    font-size: rem(120);
+    font-weight: 700;
+    line-height: 1;
+    color: $color-primary;
+  }
+
+  .dialog-title {
+    margin-bottom: rem(40);
+    font-family: $font-mono;
+    font-size: rem(64);
+    font-weight: 700;
+  }
+
+  .dialog-subtitle {
+    margin-bottom: rem(24);
+    font-family: $font-mono;
+    font-size: rem(24);
+    font-weight: 700;
+    color: $color-primary;
+  }
+
+  .dialog-text {
+    margin-bottom: rem(32);
+    font-family: $font-sans;
+    font-size: rem(18);
+  }
+}
+
+.dialog-tech-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: rem(16);
+  margin-bottom: rem(40);
+
+  .dialog-tech {
+    display: flex;
+    align-items: center;
+    gap: rem(8);
+    font-family: $font-sans;
+    font-size: rem(16);
+
+    img {
+      width: rem(24);
+    }
+  }
+}
+
+.dialog-actions {
+  display: flex;
+  gap: rem(32);
+}
+
+.dialog-image {
+  flex-shrink: 0;
+  width: 45%;
+  border-radius: rem(30);
+}
+
+.dialog-next {
+  position: absolute;
+  right: rem(80);
+  bottom: rem(40);
+  display: flex;
+  align-items: center;
+  gap: rem(12);
+  font-family: $font-sans;
+  font-size: rem(18);
+  color: $color-primary;
+
+  img {
+    width: rem(24);
+    transition: transform 200ms ease;
+  }
+
+  &:hover img {
+    transform: translateX(rem(4));
+  }
+}

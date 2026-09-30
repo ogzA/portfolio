@@ -1,3 +1,57 @@
-<section id="projects">
-  <h2>Projects</h2>
+<section class="projects" id="projects">
+  <div class="content-wrapper">
+    <div class="projects-header">
+      <p class="projects-label">Portfolio</p>
+      <h2 class="projects-title">Featured Projects</h2>
+      <p class="projects-text">
+        Explore a selection of my work here - Interact with projects to see my skills in action.
+      </p>
+    </div>
+
+    <ul class="projects-list" (mouseleave)="hoveredProject.set(null)">
+      @for (project of projects; track project.name; let i = $index) {
+        <li class="projects-row">
+          <button
+            class="projects-item"
+            type="button"
+            (mouseenter)="hoveredProject.set(project)"
+            (focus)="hoveredProject.set(project)"
+            (blur)="hoveredProject.set(null)"
+            (click)="openDialog(i)"
+          >
+            <span class="projects-name">
+              {{ project.name }}
+              <img class="projects-arrow" src="assets/images/icons/arrow-up-right.svg" alt="" />
+            </span>
+
+            <span class="projects-tech-list">
+              @for (tech of project.technologies; track tech.name) {
+                <span class="projects-tech">{{ tech.name }}</span>
+              }
+            </span>
+          </button>
+
+          @if (hoveredProject() === project) {
+            <div
+              class="projects-preview"
+              animate.enter="preview-enter"
+              animate.leave="preview-leave"
+            >
+              <img class="projects-preview-image" [src]="project.image" alt="" />
+            </div>
+          }
+        </li>
+      }
+    </ul>
+  </div>
 </section>
+
+@let index = selectedIndex();
+@if (index !== null) {
+  <app-project-dialog
+    [project]="projects[index]"
+    [index]="index"
+    (closed)="closeDialog()"
+    (next)="nextProject()"
+  />
+}
