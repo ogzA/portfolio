@@ -1,3 +1,99 @@
-section {
-  background-color: rgb(108, 212, 108);
+@use 'abstracts' as *;
+
+.skills {
+  padding: rem(120) 0;
+  background-color: $color-bg;
+
+  .content-wrapper {
+    display: flex;
+    align-items: center;
+    gap: rem(96);
+  }
+}
+
+.skills-content {
+  flex: 0 0 rem(520);
+
+  .skills-label {
+    margin-bottom: rem(16);
+    font-family: $font-sans;
+    font-size: rem(20);
+    color: $color-primary;
+  }
+}
+
+.skills-card {
+  padding: rem(32);
+  border: 1px solid $color-primary;
+  border-radius: rem(30);
+  background-color: rgba($color-primary, 0.08);
+
+  .skills-title {
+    margin-bottom: rem(40);
+    font-family: $font-mono;
+    font-size: rem(64);
+    font-weight: 700;
+    color: $color-primary;
+  }
+
+  .skills-text {
+    margin-bottom: rem(40);
+    font-family: $font-sans;
+    font-size: rem(16);
+    text-align: justify;
+    color: $color-white;
+  }
+
+  .skills-subtitle {
+    margin-bottom: rem(16);
+    font-family: $font-mono;
+    font-size: rem(24);
+    font-weight: 700;
+    color: $color-white;
+
+    span {
+      color: $color-primary;
+    }
+  }
+
+  .skills-cta-text {
+    max-width: rem(300);
+    margin-bottom: rem(32);
+    font-family: $font-sans;
+    font-size: rem(14);
+    color: $color-white;
+  }
+}
+
+.skills-grid {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: rem(48) rem(32);
+
+  .skills-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: rem(12);
+    text-align: center;
+
+    &:hover .skills-icon {
+      transform: translateY(rem(-6));
+    }
+  }
+
+  .skills-icon {
+    width: rem(56);
+    height: rem(56);
+    object-fit: contain;
+    transition: transform 200ms ease;
+  }
+
+  .skills-name {
+    max-width: rem(100);
+    font-family: $font-mono;
+    font-size: rem(16);
+    color: $color-white;
+  }
 }

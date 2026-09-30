@@ -1,3 +1,34 @@
-<section id="skills">
-  <h2>Skills</h2>
+<section class="skills" id="skills">
+  <div class="content-wrapper">
+    <div class="skills-content">
+      <p class="skills-label">Technologies</p>
+
+      <div class="skills-card">
+        <h2 class="skills-title">Skill Set</h2>
+
+        <p class="skills-text">
+          A short introduction of your skills. Highlight your experience of using different
+          front-end technologies and emphasise your openness to learning and adapting to new
+          technologies.
+        </p>
+
+        <h3 class="skills-subtitle">You need <span>another skill?</span></h3>
+
+        <p class="skills-cta-text">
+          Feel free to contact me. I look forward to expanding on my previous knowledge.
+        </p>
+
+        <a class="btn" routerLink="/" fragment="contact">Let's Talk</a>
+      </div>
+    </div>
+
+    <ul class="skills-grid">
+      @for (skill of skills; track skill.name) {
+        <li class="skills-item">
+          <img class="skills-icon" [src]="skill.icon" alt="" />
+          <span class="skills-name">{{ skill.name }}</span>
+        </li>
+      }
+    </ul>
+  </div>
 </section>
