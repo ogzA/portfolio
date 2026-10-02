@@ -1,3 +1,95 @@
-<section id="contact">
-  <h2>Contact</h2>
+<section class="contact-me" id="contact-me">
+  <div class="content-wrapper">
+    <div class="contact-header">
+      <p class="contact-label">Contact me</p>
+      <h2 class="contact-title">Let's work together</h2>
+      <span class="contact-subtitle">Got a problem to solve?</span>
+      <p class="contact-text">
+        Encourage people to contact you and describe what role you are interested in. Show that you
+        will add value to their projects through your work.
+      </p>
+      <div class="contact-text">
+        Need a Frontend developer?
+        <button type="button" class="contact-link" (click)="nameInput.focus()">Let’s talk!</button>
+      </div>
+    </div>
+
+    <div class="contact-forms">
+      <form class="contact-form" [formGroup]="contactForm" (ngSubmit)="formSubmit()">
+        <!-- Name -->
+        @let name = contactForm.controls.name;
+        <div class="contact-field" [class.invalid]="name.touched && name.invalid">
+          <label for="name">What's your name?</label>
+          <input
+            #nameInput
+            id="name"
+            type="text"
+            placeholder="Your name goes here"
+            formControlName="name"
+          />
+
+          @if (name.touched && name.hasError('required')) {
+            <p class="contact-error">Please enter your name.</p>
+          } @else if (name.touched && name.hasError('pattern')) {
+            <p class="contact-error">Your name must not start or end with a space.</p>
+          } @else if (name.touched && name.hasError('minlength')) {
+            <p class="contact-error">Your name needs at least 3 characters.</p>
+          }
+        </div>
+
+        <!-- Email -->
+        @let email = contactForm.controls.email;
+        <div class="contact-field" [class.invalid]="email.touched && email.invalid">
+          <label for="mail">What's your email?</label>
+          <input id="mail" type="email" placeholder="youremail@email.com" formControlName="email" />
+
+          @if (email.touched && email.hasError('required')) {
+            <p class="contact-error">Please enter your email.</p>
+          } @else if (email.touched && email.hasError('pattern')) {
+            <p class="contact-error">Please enter a valid email, e.g. name@mail.com.</p>
+          }
+        </div>
+
+        <!-- Message -->
+        @let message = contactForm.controls.message;
+        <div class="contact-field" [class.invalid]="message.touched && message.invalid">
+          <label for="message">How can I help you?</label>
+          <textarea
+            id="message"
+            rows="3"
+            placeholder="Hi Oğuz, I am interested in..."
+            formControlName="message"
+          ></textarea>
+
+          @if (message.touched && message.hasError('required')) {
+            <p class="contact-error">Please enter your message.</p>
+          } @else if (message.touched && message.hasError('pattern')) {
+            <p class="contact-error">Your message must not start or end with a space.</p>
+          } @else if (message.touched && message.hasError('minlength')) {
+            <p class="contact-error">Your message needs at least 15 characters.</p>
+          }
+        </div>
+        <!-- 
+        <pre>{{ contactForm.value | json }}</pre> -->
+
+        <!-- Privacy -->
+        @let privacy = contactForm.controls.privacy;
+        <div class="contact-privacy">
+          <div class="contact-checkbox">
+            <input type="checkbox" id="privacy" formControlName="privacy" />
+            <label for="privacy">
+              I've read the <a routerLink="/privacy-policy">privacy policy</a> and agree to the
+              processing of my data as outlined.
+            </label>
+          </div>
+
+          @if (privacy.touched && privacy.hasError('required')) {
+            <p class="contact-error">Please accept the privacy policy.</p>
+          }
+        </div>
+
+        <button type="submit" class="contact-submit">Say Hello ;)</button>
+      </form>
+    </div>
+  </div>
 </section>

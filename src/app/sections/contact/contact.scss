@@ -1,3 +1,237 @@
-section {
-  background: greenyellow;
+@use 'abstracts' as *;
+
+.contact-me {
+  padding-block: 80px 120px;
+  color: $color-white;
+  font-family: 'Karla', sans-serif;
+  background-color: $color-bg;
+
+  .content-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+
+    @media (max-width: 900px) {
+      grid-template-columns: 1fr;
+      gap: 48px;
+    }
+  }
+
+  @media (max-width: 900px) {
+    padding-block: 48px 64px;
+  }
 }
+
+//  #region Header
+
+.contact-header {
+  .contact-label {
+    margin: 0 0 12px;
+    color: $color-primary;
+    font-size: 1.375rem;
+  }
+
+  .contact-title {
+    max-width: 11ch; // breaks after "Let's work" like in the design
+    margin: 0 0 48px;
+    color: $color-primary;
+    font-family: 'Fira Code', monospace;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  .contact-subtitle {
+    display: block;
+    margin-bottom: 16px;
+    color: $color-primary;
+    font-family: 'Fira Code', monospace;
+    font-size: 1.5rem;
+    font-weight: 700;
+  }
+
+  .contact-text {
+    max-width: 60ch;
+    margin: 0 0 20px;
+    font-size: 1rem;
+    line-height: 1.25;
+  }
+
+  .contact-link {
+    padding: 0;
+    border: none;
+    background: none;
+    color: $color-primary;
+    font: inherit;
+    font-weight: 700;
+    cursor: pointer;
+
+    &:hover {
+      text-decoration: underline;
+    }
+
+    &:focus-visible {
+      outline: 2px solid $color-primary;
+      outline-offset: 2px;
+    }
+  }
+}
+
+// #endregion
+
+// #region Form
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .contact-privacy {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+    padding: 40px 4px 0;
+  }
+
+  .contact-error {
+    margin: 0;
+    color: #e61c40;
+    font-size: 0.875rem;
+  }
+
+  .contact-submit {
+    margin-top: 40px;
+    padding: 12px 24px;
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    border-radius: 30px;
+    background: transparent;
+    color: $color-white;
+    font-family: 'Karla', sans-serif;
+    font-size: 1.125rem;
+    cursor: pointer;
+    transition:
+      border-color 150ms ease,
+      color 150ms ease;
+
+    &:hover {
+      border-color: $color-primary;
+      color: $color-primary;
+    }
+
+    &:focus-visible {
+      outline: 2px solid $color-primary;
+      outline-offset: 3px;
+    }
+  }
+}
+
+// #endregion
+
+// #region Field
+
+.contact-field {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  padding: 32px;
+  border-bottom: 1px solid rgba(61, 207, 182, 0.5);
+  transition: border-color 150ms ease;
+
+  &:first-child {
+    border-top: 1px solid rgba(61, 207, 182, 0.5);
+  }
+
+  &.invalid {
+    border-bottom-color: #e61c40;
+  }
+
+  // After .invalid on purpose: while typing the line is green, not red
+  &:focus-within {
+    border-bottom-color: $color-primary;
+  }
+
+  label {
+    color: $color-primary;
+    font-family: 'Fira Code', monospace;
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+
+  input,
+  textarea {
+    width: 100%;
+    padding: 0;
+    border: none;
+    background: transparent;
+    color: $color-white;
+    font-family: 'Karla', sans-serif;
+    font-size: 1.125rem;
+    resize: none;
+
+    &::placeholder {
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    &:focus {
+      outline: none; // focus is shown by the field's bottom line
+    }
+  }
+
+  @media (max-width: 600px) {
+    padding: 24px 16px;
+  }
+}
+
+// #endregion
+
+// #region Privacy
+
+.contact-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.875rem;
+  line-height: 1.4;
+
+  input {
+    flex-shrink: 0;
+    width: 18px;
+    height: 18px;
+    margin: 0;
+    border: 2px solid $color-primary;
+    border-radius: 2px;
+    appearance: none;
+    cursor: pointer;
+
+    &:checked {
+      background: $color-primary
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5' fill='none' stroke='%231c1c1c' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")
+        center / 12px no-repeat;
+    }
+
+    &:focus-visible {
+      outline: 2px solid $color-primary;
+      outline-offset: 3px;
+    }
+  }
+
+  label {
+    cursor: pointer;
+  }
+
+  a {
+    color: $color-primary;
+    font-family: 'Fira Code', monospace;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+// #endregion
