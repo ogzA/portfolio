@@ -1,35 +1,240 @@
 @use 'abstracts' as *;
 
 .hero {
+  position: relative;
   display: flex;
-  align-items: center;
   justify-content: center;
   min-height: 100svh;
+  overflow: hidden; // clips the rotated marquee band at the edges
   background: linear-gradient(55.22deg, #1c1c1c 36.26%, #08463b 93.28%);
 
+  // 3 columns: scroll arrow | content | social links
   .content-wrapper {
+    display: grid;
+    grid-template-columns: rem(32) minmax(0, 1fr) rem(32);
+    width: 100%;
     max-width: rem(1440);
+
+    @media (max-width: 768px) {
+      grid-template-columns: minmax(0, 1fr);
+    }
   }
 }
 
+// #region Content
+
 .hero-content {
+  align-self: center;
   text-align: center;
+
+  .hero-subtitle {
+    font-size: rem(32);
+    color: white;
+  }
+
+  .hero-title {
+    margin: rem(8) 0 rem(48);
+    font-size: rem(96);
+    font-weight: 700;
+    color: white;
+  }
+
+  .hero-actions {
+    display: flex;
+    justify-content: center;
+    gap: rem(32);
+  }
 }
 
-.hero-subtitle {
-  font-size: rem(32);
-  color: white;
-}
+// #endregion
 
-.hero-title {
-  margin: rem(8) 0 rem(48);
-  font-size: rem(96);
-  font-weight: 700;
-  color: white;
-}
+// #region Side columns
 
-.hero-actions {
+.hero-scroll,
+.hero-social {
   display: flex;
-  justify-content: center;
-  gap: rem(32);
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end; // stacks everything at the bottom, so the line touches the section's bottom edge
+
+  @media (max-width: 768px) {
+    display: none;
+  }
 }
+
+.hero-line {
+  width: 1px;
+  background-color: $color-primary;
+}
+
+.hero-scroll {
+  gap: rem(24);
+
+  .hero-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: rem(30);
+    height: rem(48);
+    border: 1px solid $color-primary;
+    border-radius: rem(30);
+    color: white;
+    transition: background-color 150ms ease;
+
+    svg {
+      width: rem(16);
+      height: rem(16);
+    }
+
+    &:hover {
+      background-color: rgba(61, 207, 182, 0.15);
+    }
+
+    &:focus-visible {
+      outline: 2px solid $color-primary;
+      outline-offset: 3px;
+    }
+  }
+
+  .hero-line {
+    height: rem(240);
+  }
+}
+
+.hero-social {
+  gap: rem(20);
+
+  .hero-email {
+    margin-bottom: rem(8);
+    color: white;
+    font-size: rem(16);
+    text-decoration: none;
+    writing-mode: vertical-rl;
+    transform: rotate(180deg); // reads from bottom to top like in the design
+    transition: color 150ms ease;
+
+    &:hover {
+      color: $color-primary;
+    }
+  }
+
+  .hero-icon {
+    position: relative;
+    display: flex;
+
+    img {
+      width: rem(28);
+      height: rem(28);
+    }
+
+    .hero-icon-hover {
+      display: none;
+    }
+
+    // Green dot on the right, only visible on hover
+    &::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: calc(100% + rem(10));
+      width: rem(6);
+      height: rem(6);
+      border-radius: 50%;
+      background-color: $color-primary;
+      opacity: 0;
+      transform: translateY(-50%);
+      transition: opacity 150ms ease;
+    }
+
+    &:hover .hero-icon-default,
+    &:focus-visible .hero-icon-default {
+      display: none;
+    }
+
+    &:hover .hero-icon-hover,
+    &:focus-visible .hero-icon-hover {
+      display: block;
+    }
+
+    &:hover::after,
+    &:focus-visible::after {
+      opacity: 1;
+    }
+  }
+
+  .hero-line {
+    height: rem(190);
+    margin-top: rem(8);
+    background-color: white; // right line is white in the design
+  }
+}
+
+// #endregion
+
+// #region Marquee
+
+.hero-marquee {
+  position: absolute;
+  bottom: rem(48);
+  left: -2%;
+  width: 104%; // a bit wider than the screen so the rotated corners stay hidden
+  padding-block: rem(14);
+  background-color: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(4px); // the side lines look blurred behind the band
+  transform: rotate(-3deg);
+
+  .hero-marquee-track {
+    display: flex;
+    width: max-content;
+    animation: hero-marquee 24s linear infinite;
+
+    @media (prefers-reduced-motion: reduce) {
+      animation: none;
+    }
+  }
+
+  .hero-marquee-list {
+    display: flex;
+    flex-shrink: 0;
+    gap: rem(56);
+    margin: 0;
+    padding: 0 rem(56) 0 0; // same space as the gap, so the jump at the loop is invisible
+    list-style: none;
+  }
+
+  .hero-marquee-item {
+    display: flex;
+    align-items: center;
+    gap: rem(56);
+    color: $color-primary;
+    font-family: 'Karla', sans-serif;
+    font-size: rem(28);
+    white-space: nowrap;
+
+    // Dot before every item
+    &::before {
+      content: '';
+      width: rem(8);
+      height: rem(8);
+      border-radius: 50%;
+      background-color: $color-primary;
+    }
+
+    @media (max-width: 768px) {
+      font-size: rem(20);
+    }
+  }
+}
+
+// Track holds the list twice, -50% moves it by exactly one list
+@keyframes hero-marquee {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+// #endregion

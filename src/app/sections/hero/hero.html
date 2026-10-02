@@ -1,13 +1,71 @@
 <section class="hero" id="hero">
   <div class="content-wrapper">
+    <!-- Left: scroll arrow + line -->
+    <div class="hero-scroll">
+      <a class="hero-arrow" routerLink="/" fragment="about" aria-label="Scroll down to About me">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path
+            d="M12 4v16M6 14l6 6 6-6"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+      </a>
+      <span class="hero-line"></span>
+    </div>
+
+    <!-- Center -->
     <div class="hero-content">
       <p class="hero-subtitle">Frontend Developer</p>
       <h1 class="hero-title">Oğuz Akankan</h1>
 
       <div class="hero-actions">
         <a class="btn" routerLink="/" fragment="projects">Check my work</a>
-        <a class="btn" routerLink="/" fragment="contact">Contact me</a>
+        <a class="btn" routerLink="/" fragment="contact-me">Contact me</a>
       </div>
+    </div>
+
+    <!-- Right: email + social icons + line -->
+    <div class="hero-social">
+      <a class="hero-email" href="mailto:mail@oguzakankan.com">mail@oguzakankan.com</a>
+      <a
+        class="hero-icon"
+        href="https://github.com/oguzakankan"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <img class="hero-icon-default" src="assets/images/contact/github.svg" alt="GitHub" />
+        <img class="hero-icon-hover" src="assets/images/contact/github-hover.svg" alt="" />
+      </a>
+      <a
+        class="hero-icon"
+        href="https://www.linkedin.com/in/oguzakankan"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <img class="hero-icon-default" src="assets/images/contact/linkedin.svg" alt="LinkedIn" />
+        <img class="hero-icon-hover" src="assets/images/contact/linkedin-hover.svg" alt="" />
+      </a>
+      <span class="hero-line"></span>
+    </div>
+  </div>
+
+  <!-- Marquee: the list is rendered twice, the animation moves it by exactly one list -->
+  <div class="hero-marquee">
+    <div class="hero-marquee-track">
+      <ul class="hero-marquee-list">
+        @for (item of marqueeItems; track $index) {
+          <li class="hero-marquee-item">{{ item }}</li>
+        }
+      </ul>
+      <ul class="hero-marquee-list" aria-hidden="true">
+        @for (item of marqueeItems; track $index) {
+          <li class="hero-marquee-item">{{ item }}</li>
+        }
+      </ul>
     </div>
   </div>
 </section>
