@@ -1,19 +1,31 @@
 @use 'abstracts' as *;
 
-header {
+.header {
   position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  color: white;
-  height: rem(100);
-  /*   background: linear-gradient(180deg, rgba(0, 0, 0, 0.918) 18%, rgba(0, 0, 0, 0) 100%);
- */
+  justify-content: center;
   width: 100%;
+  height: rem(100);
+  color: white;
+  transition:
+    background-color 300ms ease,
+    backdrop-filter 300ms ease;
+
+  // Added by header.ts after 50px of scrolling
+  &.scrolled {
+    background-color: rgba(28, 28, 28, 0.85); // dark, but not fully black
+    backdrop-filter: blur(8px);
+  }
 
   .content-wrapper {
     display: flex;
+    align-items: center;
     justify-content: space-between;
+    width: 100%;
   }
 
   .header-left {
