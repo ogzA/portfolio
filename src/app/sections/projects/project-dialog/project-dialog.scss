@@ -94,6 +94,16 @@
 .dialog-actions {
   display: flex;
   gap: rem(32);
+
+  .btn {
+    display: flex;
+    align-items: center;
+    gap: rem(8);
+
+    img {
+      height: rem(14);
+    }
+  }
 }
 
 .dialog-image {
