@@ -1,0 +1,27 @@
+@use 'abstracts' as *;
+
+.btn {
+  display: inline-block;
+  padding: rem(12) rem(24);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  border-radius: rem(30);
+  background: transparent;
+  color: $color-white;
+  font-family: 'Karla', sans-serif;
+  font-size: rem(18);
+  text-decoration: none; // for <a class="btn">
+  cursor: pointer;
+  transition:
+    border-color 150ms ease,
+    color 150ms ease;
+
+  &:hover {
+    border-color: $color-primary;
+    color: $color-primary;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $color-primary;
+    outline-offset: 3px;
+  }
+}

@@ -103,27 +103,6 @@
 
   .contact-submit {
     margin-top: 40px;
-    padding: 12px 24px;
-    border: 1px solid rgba(255, 255, 255, 0.7);
-    border-radius: 30px;
-    background: transparent;
-    color: $color-white;
-    font-family: 'Karla', sans-serif;
-    font-size: 1.125rem;
-    cursor: pointer;
-    transition:
-      border-color 150ms ease,
-      color 150ms ease;
-
-    &:hover {
-      border-color: $color-primary;
-      color: $color-primary;
-    }
-
-    &:focus-visible {
-      outline: 2px solid $color-primary;
-      outline-offset: 3px;
-    }
   }
 }
 
