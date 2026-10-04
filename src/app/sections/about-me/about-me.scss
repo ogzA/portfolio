@@ -17,6 +17,7 @@
 
   .about-image {
     width: 100%;
+    max-width: 50%;
     aspect-ratio: 1;
     object-fit: cover;
     border-radius: rem(30);
