@@ -1,3 +1,171 @@
-section {
-  background: green;
+@use 'abstracts' as *;
+
+.testimonials {
+  background: $color-bg;
+  padding-block: rem(80);
 }
+
+.testimonials-title {
+  margin-bottom: rem(24);
+  color: $color-primary;
+  font-family: 'Fira Code', monospace;
+  font-size: rem(32);
+  font-weight: 700;
+  text-align: center;
+}
+
+// #region Slider
+
+.testimonials-viewport {
+  overflow: hidden;
+  padding-block: rem(56) rem(8); // room for the quote mark above the active card
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 15%,
+    black 85%,
+    transparent
+  ); // fades the side cards
+}
+
+.testimonials-track {
+  --card-width: min(#{rem(430)}, 80vw);
+  --gap: #{rem(48)};
+
+  display: flex;
+  gap: var(--gap);
+  margin-left: calc(50% - var(--card-width) / 2); // first card starts in the center
+  transform: translateX(calc(var(--position) * (var(--card-width) + var(--gap)) * -1));
+  transition: transform 600ms ease-in-out;
+
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
+  }
+}
+
+.testimonials-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-shrink: 0;
+  width: var(--card-width);
+  min-height: rem(185);
+  padding: rem(32) rem(28);
+  border: 1px solid rgba(61, 207, 182, 0.5);
+  border-radius: rem(20);
+  background-color: rgba(61, 207, 182, 0.05);
+  color: rgba(255, 255, 255, 0.6);
+  transform: scale(0.9);
+  transition:
+    transform 600ms ease-in-out,
+    background-color 600ms ease,
+    border-color 600ms ease,
+    color 600ms ease;
+
+  &.active {
+    border-color: $color-primary;
+    background-color: rgba(61, 207, 182, 0.25);
+    color: white;
+    transform: scale(1);
+  }
+
+  // Big quote mark, only on the active card
+  &.active::before {
+    content: '\201C';
+    position: absolute;
+    top: rem(-52);
+    left: rem(-24);
+    color: white;
+    font-family: 'Karla', sans-serif;
+    font-size: rem(140);
+    font-weight: 800;
+    line-height: 1;
+  }
+
+  .testimonials-text {
+    font-size: rem(16);
+    line-height: 1.4;
+    text-align: left;
+  }
+
+  .testimonials-author {
+    display: flex;
+    align-items: center;
+    gap: rem(12);
+    margin-top: rem(32);
+    font-size: rem(14);
+    white-space: nowrap;
+
+    // Line on the left side of the author
+    &::before {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background-color: currentColor;
+    }
+  }
+}
+
+// #endregion
+
+// #region Navigation
+
+.testimonials-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: rem(24);
+  margin-top: rem(32);
+
+  .testimonials-arrow {
+    display: flex;
+    padding: rem(4);
+    border: none;
+    background: none;
+    color: white;
+    cursor: pointer;
+    transition: color 150ms ease;
+
+    svg {
+      width: rem(20);
+      height: rem(20);
+    }
+
+    &:hover {
+      color: $color-primary;
+    }
+
+    &:focus-visible {
+      outline: 2px solid $color-primary;
+      outline-offset: 2px;
+    }
+  }
+}
+
+.testimonials-dots {
+  display: flex;
+  gap: rem(12);
+
+  .testimonials-dot {
+    width: rem(8);
+    height: rem(8);
+    padding: 0;
+    border: none;
+    border-radius: 50%;
+    background-color: white;
+    cursor: pointer;
+    transition: background-color 300ms ease;
+
+    &.active {
+      background-color: $color-primary;
+    }
+
+    &:focus-visible {
+      outline: 2px solid $color-primary;
+      outline-offset: 3px;
+    }
+  }
+}
+
+// #endregion

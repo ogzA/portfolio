@@ -1,3 +1,68 @@
-<section id="testimonials">
-  <h2>Testimonials</h2>
+<section class="testimonials" id="testimonials">
+  <h2 class="testimonials-title">What my colleagues say about me</h2>
+
+  <!-- +1 because of the cloned card at the start of the track -->
+  @let position = activeIndex() + 1;
+
+  <div class="testimonials-viewport">
+    <div class="testimonials-track" [style.--position]="position">
+      @for (slide of slides; track $index) {
+        <article
+          class="testimonials-card"
+          [class.active]="$index === position"
+          [attr.aria-hidden]="$index !== position"
+        >
+          <p class="testimonials-text">{{ slide.text }}</p>
+          <p class="testimonials-author">{{ slide.author }}</p>
+        </article>
+      }
+    </div>
+  </div>
+
+  <div class="testimonials-nav">
+    <button
+      type="button"
+      class="testimonials-arrow"
+      aria-label="Previous testimonial"
+      (click)="previous()"
+    >
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path
+          d="M19 12H5M11 6l-6 6 6 6"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+    </button>
+
+    <div class="testimonials-dots">
+      @for (testimonial of testimonials; track $index) {
+        <button
+          type="button"
+          class="testimonials-dot"
+          [class.active]="$index === activeIndex()"
+          [attr.aria-label]="'Show testimonial ' + ($index + 1)"
+          (click)="goTo($index)"
+        ></button>
+      }
+    </div>
+
+    <button type="button" class="testimonials-arrow" aria-label="Next testimonial" (click)="next()">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path
+          d="M5 12h14M13 6l6 6-6 6"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+    </button>
+
+    <pre> {{ activeIndex() }} </pre>
+  </div>
 </section>
