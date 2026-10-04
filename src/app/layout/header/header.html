@@ -1,7 +1,31 @@
 <header class="header" [class.scrolled]="isScrolled()">
   <div class="content-wrapper">
     <div class="header-left">
-      <div class="lang-switch">DE/EN</div>
+      <div
+        class="lang-switch"
+        role="group"
+        aria-label="Language"
+        [class.de-active]="currentLang() === 'de'"
+      >
+        <button
+          type="button"
+          class="lang-option"
+          [class.active]="currentLang() === 'en'"
+          [attr.aria-pressed]="currentLang() === 'en'"
+          (click)="useLanguage('en')"
+        >
+          EN
+        </button>
+        <button
+          type="button"
+          class="lang-option"
+          [class.active]="currentLang() === 'de'"
+          [attr.aria-pressed]="currentLang() === 'de'"
+          (click)="useLanguage('de')"
+        >
+          DE
+        </button>
+      </div>
 
       <nav class="nav">
         <ul class="nav-list">
