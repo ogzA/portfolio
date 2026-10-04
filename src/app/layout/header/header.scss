@@ -41,7 +41,36 @@
     }
   }
 
-  a {
-    color: white;
+  .nav-item {
+    a {
+      position: relative;
+      color: white;
+      transition: color 150ms ease;
+
+      // Green dot under the link, only visible on hover
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: rem(-10);
+        left: 50%;
+        width: rem(6);
+        height: rem(6);
+        border-radius: 50%;
+        background-color: $color-primary;
+        opacity: 0;
+        transform: translateX(-50%);
+        transition: opacity 150ms ease;
+      }
+
+      &:hover,
+      &:focus-visible {
+        color: $color-primary;
+      }
+
+      &:hover::after,
+      &:focus-visible::after {
+        opacity: 1;
+      }
+    }
   }
 }
